@@ -1,0 +1,23 @@
+## 1 文本清洗函数  
+- 查找 find（）查找字符串在字符串中的位置，会直接返回一个数字【代表位置】--可以用于判断字符串是否存在【不存在就返回#value】且位置在哪里  
+    - find(find_text,with_text,start_num)
+    - 可以设置开始位置，跳过某些字符
+    - find_text为空，返回数值1
+    - **返回的是位置，不是出现次数**
+- 提取 right/left/mid 在某字符串中从**指定位置【指定位置不提取】**开始提取**指定长度**的**子字符串**  
+    -right 从右第一个字符开始  
+    -left 从左第一个字符开始  
+    -mid 从指定位置开始提取
+- 拼接 concatenate(“文本1”，"文本2)  
+- 替换 
+    - replace（）在某字符串的**指定位置**替换**指定数目**的字符串
+        - replace(old_text,start_num,num_char,new_text)
+        - replace是单字节替换，replaceb是双字节替换， REPLACE 始终将每个字符（不管是单字节还是双字节）按 1 计数。
+        - num_chars 必需，old_text 中希望 REPLACE 使用 new_text 来进行替换的字符数，**若num_char比new text的字符数大，则表示重复替换，即n个都用某字符串重复替换**
+        - New_text——新的文本可省略，也可以用""来代替，**表示为空把old_text（旧文本）删除**
+    - substitute()在某字符串的目标字符串替换新字符串
+        - substitute(text,old_text,new_text,[instance_num]) 
+            -instance_num 表示old_text在文本中出现多次时，替换第几个，**无则全部替换**
+- 格式转换 text(单元格)
+- 删除首尾空格 trim(单元格)
+- 计算 len(单元格)，直接返回一个数值
