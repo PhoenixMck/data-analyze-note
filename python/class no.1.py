@@ -7,7 +7,7 @@
 # 注释快捷键 ctrl+/
 
 # Learning data type
-# python 弱类型语言
+# python 动态识别+强类型语言
 print("1.", 1 + 1)
 
 # 两大数字类型：整数、浮点数
@@ -78,4 +78,54 @@ print(a)
 a = 'string'
 print(a)
 
-# python的三大数据结构：列表，数组，字典
+# python的三大数据结构：列表，元组，字典
+# 列表是[]
+# 创建列表
+b = [1, 2, 3]
+# 列表求和，可以直接用sum
+print(sum(b))
+# 列表长度
+print(len(b))
+# 列表索引,从0开始
+print(b[0])
+# 输出第n至最后一个
+print(b[1:])
+# 输出第1至n-1个
+print(b[:1])
+# 输出倒数第n个
+print(b[-1])
+# 输出第1至倒数n-1个
+print(b[:-1])
+# 增加列表 列表名.insert(索引位置（同样0表示第一个），值)
+b.insert(3, 4)
+print(b)
+# 倒数第n个同样ok，此时会输出[1,2,3,5,4]
+b.insert(-1, 5)
+print(b)
+# 用append可以表示直接插入到最后，但只能插入一个
+b.append(6)
+print(b)
+# 最后插入多个，可以直接使用集合的计算,但b+[7,8,9]并没有改变b的值
+print(b + [7, 8, 9])
+b = b + [7, 8, 9]
+# print(b - [8, 9])会报错
+# 移除要用pop,参数为索引,为空则默认删除最后一个
+b.pop(1)
+print(b)
+b.pop()
+print(b)
+# del(基于索引)、remove（可基于值）也可以用于删除
+del b[2]
+print(b)
+del b[:2]
+print(b)
+# remove() 方法只会删除第一个和指定值相同的元素，而且必须保证该元素是存在的，否则会引发 ValueError 错误。
+b.remove(8)
+print(b)
+# 修改直接用索引切片
+b[2]=3
+b[1]=2
+print(b)
+# clear清空列表
+b.clear()
+print(b)
