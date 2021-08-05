@@ -19,9 +19,17 @@ print(b)
 # 字典是无序的，只有序偶的简单排列，会用类似字母表的方式存储
 # 字典的值可以存储任何数据类型的数据，字符串、整数、对象都可以，甚至可以是字典，而且可以混用
 # 但字典的键只能说字符串、整数
+# 简单的逻辑判断
+print("Morphy" in a)
+if "Nate" in a:
+    print(a)
+else:
+    print("'nate' isn't in a,add it now")
+    a["nate"] = 1
+    print(a)
 # 字典删除 del允许通过键删除一个独立元素，方法clear可以直接所有
 del a["Morphy"]
 print(a)
-# a.pop()字典没有pop方法
+a.pop("Kate")  # 效果同del
 a.clear()
 print(a)
