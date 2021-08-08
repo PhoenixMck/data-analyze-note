@@ -50,8 +50,8 @@ print(a)
 # 元组相当于一个不可修改的list，一样是用数字索引，可负数可切片(切片同list切片一样，实际是返回一个新元组)
 t = (1, 2, 3)
 print(t, t[0:2])
-t.index()
-# tuple没有方法，无法修改。连index都没有，只能用in判断是否在元组内，tuple比list更快，所以不需要查看修改，只需要遍历的，用list比用tuple快
+print(t.index(2))
+# tuple没有方法，无法修改。有index和count，可以用in判断是否在元组内，tuple比list更快，所以不需要查看修改，只需要遍历的，用list比用tuple快
 # tuple、list转换
 l = list(t)
 print(type(l), l)
