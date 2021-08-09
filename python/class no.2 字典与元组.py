@@ -51,6 +51,9 @@ print(a)
 t = (1, 2, 3)
 print(t, t[0:2])
 print(t.index(2))
+# 一个元素的元组,定义一个list、dictionary、tuple的时候都可以在最后的元素上跟上一个逗号，当定义一个只包含一个元素的tuple时逗号是必须的
+v=(1,)
+print(v)
 # tuple没有方法，无法修改。有index和count，可以用in判断是否在元组内，tuple比list更快，所以不需要查看修改，只需要遍历的，用list比用tuple快
 # tuple、list转换
 l = list(t)
