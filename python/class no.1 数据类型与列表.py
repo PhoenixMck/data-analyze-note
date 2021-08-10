@@ -179,3 +179,7 @@ print(d)
 # list的映射：对list中的每一个元素都应用同一个函数，在映射为另一个list，原list不变
 l = [1, 2, 3]
 print([elem - 1 for elem in l], l)  # 把list中每一个元素都暂时赋给变量elem（可起任意名，就是中转站），对elem应用函数计算再返回到list中
+
+# 列表的判断
+a=[1,2,3]
+print([1, 2] < a)

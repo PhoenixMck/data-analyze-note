@@ -45,6 +45,17 @@ print(d)
 print(a)
 a.clear()
 print(a)
+# 提取字典的键和值并转换成列表
+d = {"amy": 1, "john": 2, "nancy": 3}
+print(list(d.keys()))
+print(list(d.values()))
+print(list(d.items()))
+# 容错提取
+print(d.get("name", 1))  # 若无键为name的值，则返回1
+# 容错提取并赋值
+d.setdefault("name", 0)  # 若无键为name的值，则创建一个键为name，值为0的键值对
+print(d)
+print(set(d))  # 字典转化为集合
 
 # 元组 tuple 两边用圆括号，不可修改的，其索引依旧为方括号
 # 元组相当于一个不可修改的list，一样是用数字索引，可负数可切片(切片同list切片一样，实际是返回一个新元组)
@@ -52,7 +63,7 @@ t = (1, 2, 3)
 print(t, t[0:2])
 print(t.index(2))
 # 一个元素的元组,定义一个list、dictionary、tuple的时候都可以在最后的元素上跟上一个逗号，当定义一个只包含一个元素的tuple时逗号是必须的
-v=(1,)
+v = (1,)
 print(v)
 # tuple没有方法，无法修改。有index和count，可以用in判断是否在元组内，tuple比list更快，所以不需要查看修改，只需要遍历的，用list比用tuple快
 # tuple、list转换
