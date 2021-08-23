@@ -1,4 +1,4 @@
-b=[1,2,3]
+b = [1, 2, 3]
 # index函数,返回值匹配的第一个匹配项的索引，匹配项可能的区间开始位置和结束位置是可选项
 print(23, b.index(1))
 # 增加列表 列表名.insert(插入点的索引位置（同样0表示第一个），值)
@@ -80,3 +80,23 @@ print([elem - 1 for elem in l], l)  # 把list中每一个元素都暂时赋给�
 # 列表的判断
 a = [1, 2, 3]
 print([1, 2] < a)
+
+# 列表排序函数 list.sort() 参数reverse 默认升序[为false]，为truee则降序，直接修改lst,无返回值
+p = [1, 3, 4, 2, 6, 7, 9, 1]
+p.sort()
+print(p)
+p.sort(reverse=True)
+print(p)
+# list.reverse()直接降序排序
+p.sort()
+p.reverse()
+print(p)
+# 内置排序函数sorted()它会返回一个新list
+p = [1, 3, 4, 2, 6, 7, 9, 1]
+print(sorted(p))
+print(p.sort())  # list.sort()无返回值
+# 打乱顺序 random的shuffle函数
+import random
+random.shuffle(p)
+print(p)
+
