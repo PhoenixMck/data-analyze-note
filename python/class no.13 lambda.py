@@ -27,11 +27,4 @@ print(target(9))
 
 x = 3  # target执行时，已经对x%2进行了判断，结果是lambda b；b*2，即target等于lambda不变的了
 print(target(9))
-# 过滤、映射的简洁表示
 
-print([target(i) for i in range(3)])
-print([i ** 3 for i in range(3)])
-print(["str" + str(i) for i in range(3)])
-
-print([i ** 2 for i in range(6) if i % 2 == 0])
-print([i ** 2 for i in range(6) if (i % 2 == 0) & (i % 3 == 0)])  # 要加括号啊
