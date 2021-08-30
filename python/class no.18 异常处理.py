@@ -23,6 +23,9 @@ except ValueError as o:  # 异常类型相当于变量，值是ValueError后正�
     a.append(5)
     print("已添加5", a)
 # try…expect…else… 当不带异常时，除了执行try还会奖励执行else的内容
+except IndexError as p:  # 还支持多个except
+    print("出错了", p)
+
 try:
     a.index(5)
 except ValueError:
