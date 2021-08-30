@@ -12,7 +12,7 @@ f = open("sample.txt", 'w')
 print("print函数学习", file=f, flush=True)
 f.close()
 
-##格式化字符串的函数 str.format()，它增强了字符串格式化的功能。
+# 格式化字符串的函数 str.format()，它增强了字符串格式化的功能。
 """
 1.
 不需要理会数据类型的问题，在 % 方法中 % s只能替代字符串类型

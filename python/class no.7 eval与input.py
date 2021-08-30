@@ -1,7 +1,7 @@
- # input函数 用于获取用户的输入并返回，可以直接赋给变量为值，其接收任意输入。将所有输入默认为字符串处理，并返回字符串类型。
- str_a = input()
- # input与print连用
-print("你的字符串是",input())  # 先输入再print
+# input函数 用于获取用户的输入并返回，可以直接赋给变量为值，其接收任意输入。将所有输入默认为字符串处理，并返回字符串类型。
+str_a = input()
+# input与print连用
+print("你的字符串是", input())  # 先输入再print
 # input可以带字符串参数，字符串会被print，终端会获取字符串打印后的输入,并作为字符串返回，可以强制转化
 str_b = int(input("输入任意整数"))
 print(str_b)
@@ -25,10 +25,11 @@ x = 5
 b = eval(input("输入你的公式"))  # 支持input多种内容，如x*7，float(x)都可以处理
 print(b)
 
+
 # 把函数赋值给变量，两种形式，变量=函数名【不带括号】，变量=函数名()
 # 第一种
 def suma(x, y):
-     return x + y
+    return x + y
 
 
 a = suma  # a直接与suma等价，调用a等于调用suma，直接运行一遍suma
@@ -36,18 +37,8 @@ print(a(1, 2))  # print不能print print函数只能print函数返回值
 
 
 def sumb(x, y):
-     print(x + y)
+    print(x + y)
 
 
 b = sumb
 b(1, 3)  # 调用b等于调用sumb，直接运行一遍sumb
-
-
-# 来自互联网的输入 urllib2库
-"""
-import urllib2
-scp1730=urllib2.urlopen('http://helloworldbook2.com/data/message.txt')
-message=scp1730.read()
-print(message)
-"""
-
