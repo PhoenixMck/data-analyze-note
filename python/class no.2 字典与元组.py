@@ -43,7 +43,7 @@ print(a)
 d = a.pop("Kate")  # 效果同del，必须带参数--键,字典使用pop用法同list
 print(d)
 print(a)
-#dict.popitem() 方法随机返回并删除字典中的一对键和值(一般删除末尾对)
+# dict.popitem() 方法随机返回并删除字典中的一对键和值(一般删除末尾对)
 a.clear()
 print(a)
 # 提取字典的键和值并转换成列表
@@ -58,41 +58,48 @@ d.setdefault("name", 0)  # 若无键为name的值，则创建一个键为name，
 print(d)
 print(set(d))  # 字典转化为集合
 # dict() 函数用于创建一个新的字典，用法与 Pyhon 字典 update() 方法相似。语法：dict(key/value)，参数可为：**kwargs -- 关键字；mapping -- 元素的容器，如zip函数；iterable -- 可迭代对象。
-d=dict([(0,1),(2,3)])
+d = dict([(0, 1), (2, 3)])
 
 print(d)
 
-#dict(key/value)，参数可为：**kwargs -- 关键字；mapping -- 元素的容器；iterable -- 可迭代对象。
+# dict(key/value)，参数可为：**kwargs -- 关键字；mapping -- 元素的容器；iterable -- 可迭代对象。
 
-d1=dict(name=1,age=19)#直接传参，等号前不用打引号
+d1 = dict(name=1, age=19)  # 直接传参，等号前不用打引号
 
 print(d1)
 
-#对比
+# 对比
 
-d2={"name":2,"age":18}
+d2 = {"name": 2, "age": 18}
 
 print(d2)
 
-d3=dict(zip(["name","age"],[1,2,3]))#zip() 函数用于将可迭代对象作为参数，将对象中对应的元素打包成一个个元组，然后返回由这些元组组成的对象。如果各个可迭代对象的元素个数不一致，则返回的对象长度与最短的可迭代对象相同。
+d3 = dict(zip(["name", "age"], [1, 2,
+                                3]))  # zip（)把多个可迭代对象同一个位置的元素提取出来放在同一个元组内，得到若干元组组成的可迭代对象，单个则直接拆分。如果各个可迭代对象的元素个数不一致，则返回的对象长度与最短的可迭代对象相同。
 
 print(d3)
+print(list(zip([1, 2, 3], [2, 4, 5])))
 
-#在Python3中zip返回的只是一个对象，如果想要得到列表，可以用 list() 函数进行转换。
+# 在Python3中zip返回的只是一个对象，如果想要得到列表，可以用 list() 函数进行转换。
 
-print(zip(["name","age"],[1,2,3]))
+print(zip(["name", "age"], [1, 2, 3]))
 
-print(list(zip(["name","age"],[1,2,3])))
+print(list(zip(["name", "age"], [1, 2, 3])))
+# 在zip中可以使用 * 号操作符，可以将元组解压为列表
 
-#dict会直接把可迭代对象里的每个元素（常每个元素是一个含两个值的对象）处理为键值对，因为这里会默认把键值对用元组或列表输入。
+z = list(zip([1, 2, 3], [2, 4, 5]))
+print(z)
 
-d4=dict(([0,1],[2,3]))
+print(list(zip(*z)))
+# dict会直接把可迭代对象里的每个元素（常每个元素是一个含两个值的对象）处理为键值对，因为这里会默认把键值对用元组或列表输入。
+
+d4 = dict(([0, 1], [2, 3]))
 
 print(d4)
-#self.fromkeys() 函数用于创建一个新字典，以原字典中元素做字典的键，以输入的参数value为字典所有键对应的初始值。
-d=d.fromkeys(d4,12)
+# self.fromkeys() 函数用于创建一个新字典，以原字典中元素做字典的键，以输入的参数value为字典所有键对应的初始值。
+d = d.fromkeys(d4, 12)
 print(d)
-#self.update（）把输入的字典参数 的 key/value(键/值) 对补充到字典 self 里【键相同就覆盖】。
+# self.update（）把输入的字典参数 的 key/value(键/值) 对补充到字典 self 里【键相同就覆盖】。
 d.update(d3)
 print(d)
 

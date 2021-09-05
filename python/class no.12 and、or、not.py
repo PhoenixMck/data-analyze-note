@@ -14,6 +14,29 @@ else:
 
     print("%d比12小" % a)
 
+# 变量只要不为0、None、空列表/空序列/空元组/空字典、空字符串“”、False，在逻辑判断中均为真
+
+a = 1
+
+if a:  # 可以直接把为真的变量进行判断
+
+    print(a)
+
+else:
+
+    print("值为空")
+
+# 条件表达式活用
+
+guess=eval(input("猜数字0~70"))
+print("猜{}了".format("对" if guess==67 else "错"))
+
+a = 1
+
+b = 2
+
+print(str(a) + "大于等于" + str(b) if a > b else str(b) + "大于等于" + str(a))
+
 # 逻辑表达式 and or not 用于多条件的测试
 
 # and表示两个条件都需要为真时才能执行下面的模块
@@ -84,5 +107,5 @@ print(b or c)  # 如果所有值均为假，则返回最后一个假值
 # 否则，and计算返回假，or计算返回b【b为真】；
 # 当a为假时，1 and a 的结果为假，无论b是否为空，计算完都得到b
 d = 90
-print(d % 2 == 0 and a or b) #还可以直接用于赋值
-print(b if d % 2 == 0 else a) # 变量1 if 表达式 else 变量2 如果表达式为真则返回变量1，否则返回变量2
+print(d % 2 == 0 and a or b)  # 还可以直接用于赋值
+print(b if d % 2 == 0 else a)  # 变量1 if 表达式 else 变量2 如果表达式为真则返回变量1，否则返回变量2

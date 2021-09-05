@@ -61,4 +61,5 @@ KeyError 映射中没有该键
 SyntaxError 语法错误
 ValueError 传入无效参数
 TypeError 对类型的无效操作
+IOError 输入输出流错误
 """
