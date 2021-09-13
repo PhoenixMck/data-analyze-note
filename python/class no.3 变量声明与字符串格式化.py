@@ -50,3 +50,10 @@ print(st)
 print(st.split("-"))
 # 如果想搜索一个字符串，然后分别处理前半部分和后半部分可以使用split
 print(st.split("-", 1))
+
+# 字符串的strip（）函数去掉字符串头尾指定的内容，参数可为字符串，即要删除的内容，默认为空格，包括'\n', '\r',  '\t',  ' '，但是strip会返回一个字符串，实际上不改变原字符串的内容
+a = " a  1 "
+print(a.strip())
+print(a)
+print(a.strip("a"))  # 无效的参数，因为a字符串开头是空白不是”a“，所以无法删除”a“
+print(a.strip("  a"))
