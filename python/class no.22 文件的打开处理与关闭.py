@@ -15,7 +15,7 @@ print(f.name)  # 告诉我们文件对象所打开的文件的文件名
 
 # 文件指针的位置：文件读取是通过指针移动进行的
 print(f.tell())  # 告诉我们当前在打开文件中的哪个位置，当返回0说明未移动，文件指针处于起始处
-print(f.seek(-8, 2))  # 可以在文件中移动到某个位置，两个参数，位置【字节位置】，移动方式【0：从文件开始算起的绝对位置，1：从当前位置算起的相对位置，2：相对于文件末尾的绝对位置】
+print(f.seek(1, 2))  # 可以在文件中移动到某个位置，两个参数，位置【字节位置】，移动方式【0：从文件开始算起的绝对位置，1：从当前位置算起的相对位置，2：相对于文件末尾的绝对位置】
 f.close()
 
 # 文件的读取，在打开方式里要有“r”或者“+”相应声明，即以可读模式（包括 r、r+、rb、rb+）打开的文件
@@ -31,10 +31,48 @@ context_1 = f.readlines(1)
 print(context_1)
 
 # 好像也可以直接用
-for item in f:  # list（f）可以实现跟readlines一样的效果，记得指针要返回
+for item in f:  # list（f）可以实现跟readlines一样的效果[每行一个list，每行是一个item]，记得指针要返回
     lst = item.strip("\n").split(",")
     print(lst)
 
-#写入文件
+# 写入文件
+f = open("sample.txt", "w+")
+lst = ["a", "b", "c"]
+for item in lst:  # 可以用这种方式写入
+    f.write(item + "\n")
+f.seek(0)
+print(f.read())
+# 也可以
+lst = ["a\n", "b\n", "c\n"]
+f.write("".join(lst))
+# writelines 输入后换行，下次写会在下一行写，可以直接把列表写入，
+lst = ["e\n", "g\n", "f\n"]  # writelines直接写在同一行
+f.writelines(lst)
+f.close()
+# 追加就是在"a"模式下写东东
+f = open("sample.txt", "a")
+f.write("\nThat is all!")
+f.close()
+# 追加写入的时候，要注意前面的写入有没有换行,没有就先补上
 
+# 使用print的重定向写文件
+f = open("sample.txt", "w")
+print(12 * 12, file=f)  # >>告诉print要把输出发送到文件里而不是屏幕中，它会自动把数字转换成字符串的，如果要在文件中放入文本，print和write都可以
+f.close()
+
+# 创建文件，在open中使用”x“模式
+f = open("new.txt", "x")
+f.close()
+
+# 在文件中保存内容 pickle库的dump函数,pickle模块可以保存序列甚至是模型。当保存模型时，常保存为pkl文件，（pkl文件是python里面保存文件的一种格式，打开后显示一堆序列化的东西），python用来保存固定变量的
+import pickle
+
+f = open("new.pkl", "wb")
+dic = {"a": 1, "b": 3}
+pickle.dump(dic, f)  # 参数要倒入的内容，文件
+f.close()
+# load函数，拿出被倒入的内容，即把倒入pickle文件的对象，放回到变量中
+f = open("new.pkl", "rb")
+dic = pickle.load(f)  # 参数要倒入的内容，文件
+print(dic)
 f.close()
