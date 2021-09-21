@@ -62,3 +62,9 @@ print(a.strip())
 print(a)
 print(a.strip("a"))  # 无效的参数，因为a字符串开头是空白不是”a“，所以无法删除”a“
 print(a.strip("  a"))
+
+#字符解码【decode()】与编码【encode()】
+s="工作好烦啊"
+s=s.encode(encoding='GBK')
+print(s)
+print(s.decode(encoding='GBK'))
