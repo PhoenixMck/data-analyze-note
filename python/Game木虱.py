@@ -46,10 +46,13 @@ def dealCard(cardLst, lst_color, lst_num):
         num = r.choice(lst_num)
         return color, num
 
+    """大小王检验"""
     (color, num) = dealCard2()
+    if (color == "Joker") and (num != 1) and (num != 2) and (num != 3):
+        (color, num) = dealCard2()
     """查重"""
     if (color, num) in cardLst:
-        dealCard2()
+        (color, num) = dealCard2()
     else:
         cardLst.append((color, num))
     return color, num, cardLst
@@ -58,9 +61,15 @@ def dealCard(cardLst, lst_color, lst_num):
 """进入游戏"""
 e.msgbox("欢迎进入21点")
 order = e.buttonbox("准备好开始了吗", choices=["开始", "不想玩啦"])
-if order == "不想玩啦":
-    e.msgbox("你将退出游戏")
-    sys.exit()
+while order == "不想玩啦":
+    order = e.buttonbox("你将离开游戏", choices=["不不，我要留下", "不想玩啦"])
+    if order == "不想玩啦":
+        e.msgbox("跑喽跑喽下班喽ヾ（≧?≦）〃")
+        sys.exit()
+    else:
+        """创建玩家对象player1，同时允许玩家给自己命名"""
+        player1 = player("P", "")
+        player1.get_name()
 else:
     """创建玩家对象player1，同时允许玩家给自己命名"""
     player1 = player("P", "")
@@ -105,6 +114,12 @@ for i in [1, 2]:
     print(player1_card)
 
 """人类判断是否继续发牌，command_1"""
+command_1 = e.buttonbox("来吧人类玩家d号，要不要继续发票" , choices=["要", "不要"])
+if command_1=="要":
+    (c, n, l) = dealCard(cardLst, lst_color, lst_num)
+    thiscard = card(c, n)
+    player1_card.append((thiscard.color, thiscard.num))
+    print(player1_card)
 """再发一张"""
 """如果有电脑玩家，电脑判断是否继续要牌，command_2"""
 """再发一张"""
