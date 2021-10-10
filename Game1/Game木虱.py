@@ -1,8 +1,8 @@
 import sys
 import easygui as e
 from class_pleayer import player
-import function_dealcard as f
-import function_score as sc
+import function_Licensing as f
+import class_score as sc
 
 """Game_body:木虱游戏"""
 
@@ -75,6 +75,7 @@ else:
     print("还没开发完呢,去跟人类玩吧")
     sys.exit()
 
-"""获胜判断:计算双方得分"""
-print(sc.score_count(player1.card))
-print(sc.score_count(player2.card))
+"""获胜判断:计算双方得分
+print(sc.score_count(player1.card,player1.command))
+print(sc.score_count(player2.card,player2.command))
+"""
