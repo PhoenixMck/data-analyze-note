@@ -52,7 +52,7 @@ class CountScore(Score):  # 定义子类：用于计算非顺子非五雷的结�
         return level, event, multiple, points
 
 
-class FlushScore(Score):  # 定义子类，用于计算同花
+class FlushScore(Score):  # 定义子类，用于计算同花，不含同花顺
     def score(self, c_lst, n_lst):
         event = 12
         level = 3
@@ -141,7 +141,57 @@ class PlusScore(Score):  # 定义子类，用于计算同点【含木虱】
         return level, event, multiple, points
 
 
-"""建立方法收集子类"""
+class SingleGhost(Score):  # 定义子类：用于计算单鬼的结果
+
+    def score(self, c_lst, n_lst):
+        """建立方法收集子类"""
+        c = c_lst.copy()
+        n = n_lst.copy()
+        event = 12
+        level = 3
+        p = dc.takeZero(n_lst)
+        multiple = 1
+        points = sum(p) % 10
+        if c.count("Joker") == 1:
+            points = 9  # 单鬼默认9点
+            """把另外两张牌独立出来"""
+            del n[c.index("Joker")]
+            c.remove("Joker")
+            # 计算同花
+            if len(set(c)) == 1:
+                event = 9
+                level = 2
+                multiple = 3
+                points=None
+            else:
+                pass
+            # 计算顺子
+            p = dc.takeNum(n)
+            p.sort()
+            if ((p[1] - p[0]) == 1) or (p in ([1, 12], [1, 13], [2, 13])):
+                event = 7
+                multiple = 4
+                points=None
+                # 计算同花顺
+                if len(set(c)) == 1:
+                    event = 5
+                    multiple = 8
+                    points=None
+                else:
+                    pass
+            else:
+                pass
+            # 计算对子
+            if len(set(n)) == 1:
+                event = 6
+                multiple = 5
+                points=None
+            else:
+                pass
+
+        print("按单鬼计算的结果，当前属于事件%d，倍数为%d，点数为%s" % (event, multiple, points))
+
+        return level, event, multiple, points
 
 
 def collect():
@@ -150,6 +200,7 @@ def collect():
     strategy.append(FlushScore())
     strategy.append(FlowScore())
     strategy.append(PlusScore())
+    strategy.append(SingleGhost())
     return strategy
 
 
