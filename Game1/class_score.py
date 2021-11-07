@@ -26,45 +26,47 @@ class Score(metaclass=abc.ABCMeta):  # 定义抽象类
 class CountScore(Score):  # 定义子类：用于计算非顺子非五雷的结果，普通计算，天公,木虱
     def score(self, c_lst, n_lst):  # 必须创建同样的方法覆盖父类的方法
         event = 12
-        level = 3
+        level = 4
         p = dc.takeZero(n_lst)
         multiple = 1
         points = sum(p) % 10
         if "Joker" not in c_lst:
             if len(c_lst) == 2:
                 """两只牌是否有天公9、天公8"""
-                if sum(p) % 10 == 9:
+                if points == 9:
                     event = 3
-                    level = 1
-                elif sum(p) % 10 == 8:
+                    level = 2
+                elif points == 8:
                     event = 4
-                    level = 1
-                elif sum(p) % 10 == 0:
-                    event = 8
-                    level = 4
+                    level = 2
                 else:
                     pass
+            if points == 0:
+                event = 8
+                level = 0
             else:
                 pass
+
         else:
             pass
-        print("按普通计算的结果，当前属于事件%d，倍数为%d，点数为%d" % (event, multiple, points))
+        print("按普通计算的结果，当前属于事件%d，倍数为%d，点数为%d，等级为%s" % (event, multiple, points, level))
         return level, event, multiple, points
 
 
 class FlushScore(Score):  # 定义子类，用于计算同花，不含同花顺
     def score(self, c_lst, n_lst):
         event = 12
-        level = 3
+        level = 4
         multiple = 1
         points = None
         if (len(n_lst) == 2) and (len(set(c_lst)) == 1):
             """两只牌是否同花"""
             event = 10
             multiple = 2
-            level = 2
+            level = 3
         else:
             pass
+        """双鬼"""
         if (len(n_lst) == 2) and (set(c_lst) == {"Joker"}):
             event = 2
             level = 1
@@ -75,26 +77,26 @@ class FlushScore(Score):  # 定义子类，用于计算同花，不含同花顺
         if (len(n_lst) == 3) and (len(set(c_lst)) == 1):
             """三只牌是否同花"""
             event = 9
-            level = 2
+            level = 3
             multiple = 3
         else:
             pass
 
         if (len(n_lst) == 3) and (set(c_lst) == {"Joker"}):
-            """三只同花牌是否双鬼"""
+            """三只同花牌是否鬼"""
             event = 1
             level = 1
             multiple = 40
         else:
             pass
-        print("按同花计算的结果，当前属于事件%d，倍数为%d，点数为%s" % (event, multiple, points))
+        print("按同花计算的结果，当前属于事件%d，倍数为%d，点数为%s，等级为%s" % (event, multiple, points, level))
         return level, event, multiple, points
 
 
 class FlowScore(Score):  # 定义子类，用于计算顺子
     def score(self, c_lst, n_lst):
         event = 12
-        level = 3
+        level = 4
         points = None
         multiple = 1
         p = dc.takeNum(n_lst)
@@ -103,6 +105,7 @@ class FlowScore(Score):  # 定义子类，用于计算顺子
             if ((p[1] - p[0]) == 1 and (p[2] - p[1]) == 1) or p in ([1, 12, 13], [1, 2, 13]):
                 event = 7
                 multiple = 4
+                level = 3
                 if len(set(c_lst)) == 1:
                     event = 5
                     multiple = 8
@@ -112,18 +115,19 @@ class FlowScore(Score):  # 定义子类，用于计算顺子
                 pass
         else:
             pass
-        print("按顺子计算的结果，当前属于事件%d，倍数为%d，点数为%s" % (event, multiple, points))
+        print("按顺子计算的结果，当前属于事件%d，倍数为%d，点数为%s,等级为%s" % (event, multiple, points, level))
         return level, event, multiple, points
 
 
-class PlusScore(Score):  # 定义子类，用于计算同点【含木虱】
+class PlusScore(Score):  # 定义子类，用于计算同点，五雷，对子
     def score(self, c_lst, n_lst):
         event = 12
-        level = 3
+        level = 4
         points = None
         p = dc.takeNum(n_lst)
         multiple = 1
         if len(set(p)) == 1:
+            level = 3
             if set(p) in [{10}, {11}, {12}, {13}]:
                 event = 8
             else:
@@ -137,7 +141,7 @@ class PlusScore(Score):  # 定义子类，用于计算同点【含木虱】
         else:
             pass
 
-        print("按五雷计算的结果，当前属于事件%d，倍数为%d，点数为%s" % (event, multiple, points))
+        print("按五雷计算的结果，当前属于事件%d，倍数为%d，点数为%s,等级为%s" % (event, multiple, points, level))
         return level, event, multiple, points
 
 
@@ -148,10 +152,9 @@ class SingleGhost(Score):  # 定义子类：用于计算单鬼的结果
         c = c_lst.copy()
         n = n_lst.copy()
         event = 12
-        level = 3
-        p = dc.takeZero(n_lst)
+        level = 4
         multiple = 1
-        points = sum(p) % 10
+        points = None
         if c.count("Joker") == 1:
             points = 9  # 单鬼默认9点
             """把另外两张牌独立出来"""
@@ -160,9 +163,9 @@ class SingleGhost(Score):  # 定义子类：用于计算单鬼的结果
             # 计算同花
             if len(set(c)) == 1:
                 event = 9
-                level = 2
+                level = 3
                 multiple = 3
-                points=None
+                points = None
             else:
                 pass
             # 计算顺子
@@ -171,12 +174,13 @@ class SingleGhost(Score):  # 定义子类：用于计算单鬼的结果
             if ((p[1] - p[0]) == 1) or (p in ([1, 12], [1, 13], [2, 13])):
                 event = 7
                 multiple = 4
-                points=None
+                level = 3
+                points = None
                 # 计算同花顺
                 if len(set(c)) == 1:
                     event = 5
                     multiple = 8
-                    points=None
+                    points = None
                 else:
                     pass
             else:
@@ -185,11 +189,12 @@ class SingleGhost(Score):  # 定义子类：用于计算单鬼的结果
             if len(set(n)) == 1:
                 event = 6
                 multiple = 5
-                points=None
+                points = None
+                level = 3
             else:
                 pass
 
-        print("按单鬼计算的结果，当前属于事件%d，倍数为%d，点数为%s" % (event, multiple, points))
+        print("按单鬼计算的结果，当前属于事件%d，倍数为%d，点数为%s,等级为%s" % (event, multiple, points, level))
 
         return level, event, multiple, points
 
@@ -216,5 +221,5 @@ def PlayScore(lst):
 
 
 if __name__ == '__main__':
-    n = [('红心', 1), ('红心', 3), ('红心', 2)]
+    n = [('红心', 1), ('方块', 1), ('黑桃', 1)]
     print(PlayScore(n))
